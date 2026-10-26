@@ -3,43 +3,64 @@ const NEW_TASK_BUTTON = document.getElementById("new-task-button");
 const UNCOMPLETED_TASKS_ARRAY = document.getElementById("incompleteTasks");
 const COMPLETED_TASKS_ARRAY = document.getElementById("completed-tasks");
 
-const createNewTaskElement = function (taskString) {
-  const LIST_NODE = document.createElement("li");
-  const CHECK_BOX = document.createElement("input");
-  const LABEL = document.createElement("label");
-  const EDIT_INPUT = document.createElement("input");
-  const EDIT_BUTTON = document.createElement("button");
-  const DELETE_BUTTON = document.createElement("button");
-  const DELETE_BUTTON_IMG = document.createElement("img");
+class NewTaskElement {
+  static create(taskTitle) {
+    const TAG = document.createElement("li");
+    TAG.appendChild(this.createCheckbox());
+    TAG.appendChild(this.createLabel(taskTitle));
+    TAG.appendChild(this.createEditInput());
+    TAG.appendChild(this.createEditButton());
+    TAG.appendChild(this.createDeleteButton());
+    return TAG;
+  }
 
-  LABEL.innerText = taskString;
-  LABEL.className = "task";
+  static createCheckbox() {
+    const TAG = document.createElement("input");
+    TAG.type = "checkbox";
+    return TAG;
+  }
 
-  CHECK_BOX.type = "checkbox";
-  EDIT_INPUT.type = "text";
-  EDIT_INPUT.className = "task";
+  static createLabel(text) {
+    const TAG = document.createElement("label");
+    TAG.innerText = text;
+    TAG.className = "task";
+    return TAG;
+  }
 
-  EDIT_BUTTON.innerText = "Edit";
-  EDIT_BUTTON.className = "edit";
+  static createEditInput() {
+    const TAG = document.createElement("input");
+    TAG.type = "text";
+    TAG.className = "task";
+    return TAG;
+  }
 
-  DELETE_BUTTON.className = "delete";
-  DELETE_BUTTON_IMG.src = "./remove.svg";
-  DELETE_BUTTON.appendChild(DELETE_BUTTON_IMG);
+  static createEditButton() {
+    const TAG = document.createElement("button");
+    TAG.innerText = "Edit";
+    TAG.className = "edit";
+    return TAG;
+  }
 
-  LIST_NODE.appendChild(CHECK_BOX);
-  LIST_NODE.appendChild(LABEL);
-  LIST_NODE.appendChild(EDIT_INPUT);
-  LIST_NODE.appendChild(EDIT_BUTTON);
-  LIST_NODE.appendChild(DELETE_BUTTON);
-  return LIST_NODE;
-};
+  static createDeleteButton() {
+    const TAG = document.createElement("button");
+    TAG.className = "delete";
+    TAG.appendChild(this.createDeleteButtonImage());
+    return TAG;
+  }
+
+  static createDeleteButtonImage() {
+    const TAG = document.createElement("img");
+    TAG.src = "./remove.svg";
+    return TAG;
+  }
+}
 
 const addTask = function () {
   if (!NEW_TASK_INPUT.value) {
     return;
   }
 
-  const TASK_LIST_ITEM = createNewTaskElement(NEW_TASK_INPUT.value);
+  const TASK_LIST_ITEM = NewTaskElement.create(NEW_TASK_INPUT.value);
 
   UNCOMPLETED_TASKS_ARRAY.appendChild(TASK_LIST_ITEM);
   setEventsForTask(TASK_LIST_ITEM);
