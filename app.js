@@ -68,10 +68,9 @@ const editTask = function () {
 };
 
 const deleteTask = function () {
-  const listItem = this.parentNode;
-  const ul = listItem.parentNode;
-
-  ul.removeChild(listItem);
+  const LIST_NODE = this.parentNode;
+  const LIST = LIST_NODE.parentNode;
+  LIST.removeChild(LIST_NODE);
 };
 
 NEW_TASK_BUTTON.addEventListener("click", addTask);
