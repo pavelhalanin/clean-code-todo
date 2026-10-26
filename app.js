@@ -1,5 +1,5 @@
 const NEW_TASK_INPUT = document.getElementById("new-task");
-const addButton = document.getElementsByTagName("button")[0];
+const NEW_TASK_BUTTON = document.getElementById("new-task-button");
 const UNCOMPLETED_TASKS_ARRAY = document.getElementById("incompleteTasks");
 const COMPLETED_TASKS_ARRAY = document.getElementById("completed-tasks");
 
@@ -78,7 +78,7 @@ const deleteTask = function () {
   ul.removeChild(listItem);
 };
 
-addButton.addEventListener("click", addTask);
+NEW_TASK_BUTTON.addEventListener("click", addTask);
 
 const setEventsForTask = function (taskListItem) {
   taskListItem.querySelector("input[type=checkbox]").onchange = moveTask;
