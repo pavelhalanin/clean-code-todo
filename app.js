@@ -48,22 +48,23 @@ const addTask = function () {
 };
 
 const editTask = function () {
-  const listItem = this.parentNode;
+  const LIST_NODE = this.parentNode;
 
-  const editInput = listItem.querySelector("input[type=text]");
-  const label = listItem.querySelector("label");
-  const editBtn = listItem.querySelector(".edit");
-  const containsClass = listItem.classList.contains("editMode");
+  const EDIT_INPUT = LIST_NODE.querySelector("input[type=text]");
+  const LABEL = LIST_NODE.querySelector("label");
+  const EDIT_BUTTON = LIST_NODE.querySelector(".edit");
+  const IS_EDIT_FORM_MODE = LIST_NODE.classList.contains("editMode");
 
-  if (containsClass) {
-    label.innerText = editInput.value;
-    editBtn.innerText = "Edit";
-  } else {
-    editInput.value = label.innerText;
-    editBtn.innerText = "Save";
+  LIST_NODE.classList.toggle("editMode");
+
+  if (IS_EDIT_FORM_MODE) {
+    LABEL.innerText = EDIT_INPUT.value;
+    EDIT_BUTTON.innerText = "Edit";
+    return;
   }
 
-  listItem.classList.toggle("editMode");
+  EDIT_INPUT.value = LABEL.innerText;
+  EDIT_BUTTON.innerText = "Save";
 };
 
 const deleteTask = function () {
