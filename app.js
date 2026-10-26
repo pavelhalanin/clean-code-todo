@@ -4,39 +4,34 @@ const UNCOMPLETED_TASKS_ARRAY = document.getElementById("incompleteTasks");
 const COMPLETED_TASKS_ARRAY = document.getElementById("completed-tasks");
 
 const createNewTaskElement = function (taskString) {
-  const listItem = document.createElement("li");
+  const LIST_NODE = document.createElement("li");
+  const CHECK_BOX = document.createElement("input");
+  const LABEL = document.createElement("label");
+  const EDIT_INPUT = document.createElement("input");
+  const EDIT_BUTTON = document.createElement("button");
+  const DELETE_BUTTON = document.createElement("button");
+  const DELETE_BUTTON_IMG = document.createElement("img");
 
-  const checkBox = document.createElement("input");
+  LABEL.innerText = taskString;
+  LABEL.className = "task";
 
-  const label = document.createElement("label");
+  CHECK_BOX.type = "checkbox";
+  EDIT_INPUT.type = "text";
+  EDIT_INPUT.className = "task";
 
-  const editInput = document.createElement("input");
+  EDIT_BUTTON.innerText = "Edit";
+  EDIT_BUTTON.className = "edit";
 
-  const editButton = document.createElement("button");
+  DELETE_BUTTON.className = "delete";
+  DELETE_BUTTON_IMG.src = "./remove.svg";
+  DELETE_BUTTON.appendChild(DELETE_BUTTON_IMG);
 
-  const deleteButton = document.createElement("button");
-  const deleteButtonImg = document.createElement("img");
-
-  label.innerText = taskString;
-  label.className = "task";
-
-  checkBox.type = "checkbox";
-  editInput.type = "text";
-  editInput.className = "task";
-
-  editButton.innerText = "Edit";
-  editButton.className = "edit";
-
-  deleteButton.className = "delete";
-  deleteButtonImg.src = "./remove.svg";
-  deleteButton.appendChild(deleteButtonImg);
-
-  listItem.appendChild(checkBox);
-  listItem.appendChild(label);
-  listItem.appendChild(editInput);
-  listItem.appendChild(editButton);
-  listItem.appendChild(deleteButton);
-  return listItem;
+  LIST_NODE.appendChild(CHECK_BOX);
+  LIST_NODE.appendChild(LABEL);
+  LIST_NODE.appendChild(EDIT_INPUT);
+  LIST_NODE.appendChild(EDIT_BUTTON);
+  LIST_NODE.appendChild(DELETE_BUTTON);
+  return LIST_NODE;
 };
 
 const addTask = function () {
